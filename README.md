@@ -18,7 +18,7 @@ AI will implement codes for these key spec by GitHub Actions.
 例：OpenAIなら https://api.openai.com/v1/chat/completions
 APIキーを取得して、GitHubのSecretsに保存 → Settings > Secrets and variables > Actions にて OPENAI_API_KEY を追加
 
-### Github Actions flow ~generation~
+### Github Actions flow for generation
 
 Adding in 
 
@@ -61,7 +61,7 @@ jobs:
 ```
 
 
-### Github Actions flow ~auto check-in~(optional)
+### Github Actions flow for auto check-in(optional)
 
 ## GitHub Actions for execution
 
