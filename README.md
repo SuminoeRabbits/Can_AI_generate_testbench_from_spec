@@ -14,7 +14,9 @@ AI will implement codes for these key spec by GitHub Actions.
 ## Learning with CoPilot
 面倒なので全部AIにやらせてみよう。まずやり方がよくわからなかったので聞いてみた。
 
-`GitHub ActionsやAPI連携で自動化 の部分を詳しく教えて。今、GithubでRepositoryを作りました。そして docs/specification.md が存在するとします。このファイルをCheckInするたびにGithub　ActionでAIに対して実装を行うように指示したい。どうやって？`
+```
+GitHub ActionsやAPI連携で自動化 の部分を詳しく教えて。今、GithubでRepositoryを作りました。そして docs/specification.md が存在するとします。このファイルをCheckInするたびにGithub　ActionでAIに対して実装を行うように指示したい。どうやって？
+```
 
 
 ## Setting GitHub Actions
@@ -74,8 +76,10 @@ jobs:
 ### initinal geneneration
 これも面倒なのでAIに書かせる。
 
-`最終的にはAIに実装を依頼することを想定したdocs/specification.md のサンプルを考えてみたい。これは仕様書なので、具体的な実装は行わないがこの仕様書を読んで実装が可能であるレベルの具体的な仕様書を作る事がっ目的である。AIが解析可能なMarkdownフォーマットで記述をお願いしいます。以下は仕様書です。
-言語使用はSystem Verilgとし、階層のTopはtop_tb()と命名。top_tb()内には下記のModuleが存在する。 reset_gen(), clk_gen(), dut_top(), memory_target_if(), dut_initiator_if0(),dut_initiator_if1()。
+```
+最終的にはAIに実装を依頼することを想定した仕様書であるdocs/specification.md のサンプルを考えてみたい。これは仕様書なので、具体的な実装は行わないがこの仕様書を読んで実装が可能であるレベルの具体的な仕様書を作る事が目的である。AIが解析可能なMarkdownフォーマットで記述をお願いしいます。以下は仕様書です。
+- 言語使用はSystem Verilgとする。
+- 階層のTopはtop_tb()と命名。top_tb()内には下記のModuleが存在する。 reset_gen(), clk_gen(), dut_top(), memory_target_if(), dut_initiator_if0(),dut_initiator_if1()。
 - reset_gen()とclk_gen()はリセット、クロックを与えるだけのModuleであり、出力のみを持っている。
 - memory_target_if()はAMBA inferfaceを持つが、そのプロトコルは｛default:AXI4-128bit(address=48bit), AHB-32bit(address=32bit), CHI-256bit(address=48bit)}から選択可能で、かつ、System Verilogのinferface,package構文により抽象化されてdut_top()とバス接続されているとする。
 - dut_initiator_ifx()はAMBA inferfaceを持つが、そのプロトコルは｛default:AXI4-128bit(address=48bit), AXI4-64bit(address=48bit), APB-64bit(address=32bit), NotPresent}から選択可能で、かつ、System Verilogのinferface,package構文により抽象化されてdut_top()とバス接続されているとする。
@@ -88,7 +92,8 @@ jobs:
 ２．インターフェースで"NotPresent"が選択された場合は、そのモジュールは害を及ぼさないように隔離される。
 ３．SystemVerilogの(interface, package, modport)はAMBAバスインターフェース部分の抽象化のみに利用する。
 
-ここから仕様書docs/specification.mdを作ってみてください。`
+ここから仕様書docs/specification.mdを作ってみてください。
+```
 
 ### tuning by hands, with github copilot
 
