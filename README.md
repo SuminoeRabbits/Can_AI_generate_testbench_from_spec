@@ -17,7 +17,7 @@ AI will implement codes for these key spec by GitHub Actions.
 `GitHub ActionsやAPI連携で自動化 の部分を詳しく教えて。今、GithubでRepositoryを作りました。そして docs/specification.md が存在するとします。このファイルをCheckInするたびにGithub　ActionでAIに対して実装を行うように指示したい。どうやって？`
 
 
-## GitHub Actions for generation
+## Setting GitHub Actions
 
 ### Setting AI backend
 
@@ -69,5 +69,9 @@ jobs:
 
 ### Github Actions flow for auto check-in(optional)
 
-## GitHub Actions for execution
+## docs/specification.md
+これも面倒なのでAIに書かせる。
+`ではdocs/specification.md のサンプルを考えてみたい。これは最終的にはAIに実装を依頼する仕様書なので、ここでは実装は行わない事に注意。言語使用はVerilg HDLとし、階層のTopはtop_tb()と命名。top_tb()内には下記のModuleが存在する。 reset_gen(), clk_gen(), dut_top(), memory_target_if(), dut_initiator_if() ここから仕様書のサンプルを書いてみて。`
+
+
 
