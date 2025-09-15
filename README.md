@@ -1,2 +1,67 @@
 # Can_AI_generate_testbench_from_spec
-Can AI generate testbench just from engineering specification?
+## PROFACE
+Can AI generate testbench just from engineering specification? 
+
+Key specifications are only in, 
+- Testbench spec is described in `docs/specification.md`
+- Test scenario is described in `docs/testscenario.md`
+- DUT(Device Under Test) is described in `docs/DUT.md`
+
+AI will implement codes for these key spec by GitHub Actions.
+
+## TOC
+
+## GitHub Actions for generation
+
+### Setting AI backend
+
+例：OpenAIなら https://api.openai.com/v1/chat/completions
+APIキーを取得して、GitHubのSecretsに保存 → Settings > Secrets and variables > Actions にて OPENAI_API_KEY を追加
+
+### Github Actions flow ~generation~
+
+Adding in 
+
+```
+name: Generate Code from Spec
+
+on:
+  push:
+    paths:
+      - 'docs/specification.md'  # このファイルが更新されたときにトリガー
+
+jobs:
+  generate_code:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Read specification
+        id: read_spec
+        run: |
+          SPEC=$(cat docs/specification.md | jq -Rs .)
+          echo "spec=$SPEC" >> $GITHUB_OUTPUT
+
+      - name: Call OpenAI API
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          curl https://api.openai.com/v1/chat/completions \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $OPENAI_API_KEY" \
+            -d '{
+              "model": "gpt-4",
+              "messages": [
+                {"role": "system", "content": "You are a helpful assistant that writes code based on engineering specifications."},
+                {"role": "user", "content": '${{ steps.read_spec.outputs.spec }}'}
+              ]
+            }'
+```
+
+
+### Github Actions flow ~auto check-in~(optional)
+
+## GitHub Actions for execution
+
