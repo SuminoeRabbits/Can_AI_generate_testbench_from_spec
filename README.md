@@ -81,7 +81,7 @@ memory_target_if()はAMBA inferfaceを持つが、そのプロトコルは｛def
 dut_initiator_ifx()はAMBA inferfaceを持つが、そのプロトコルは｛default:AXI4-128bit(address=48bit), AXI4-64bit(address=48bit), APB-64bit(address=32bit), Not-Present}から選択可能で、かつ、System Verilogのinferface,package構文により抽象化されてdut_top()とバス接続されているとする。
 どのinterfaceがどのプロトコルを利用しているかは、top_tb()上位でグローバルに明記されるとする。明記されない場合はdefaultが適応される。Not-Presentが設定された場合は、インスタンスとして存在しても害を及ぼさないようにする。
 
-ここから仕様書のサンプルを書いてみて。`
+ここから仕様書docs/specification.mdのサンプルを1枚のMarkdownで書いてみて。`
 
 ### tuning by hands, with github copilot
 
