@@ -74,19 +74,21 @@ jobs:
 ### initinal geneneration
 これも面倒なのでAIに書かせる。
 
-`最終的にはAIに実装を依頼することを想定したdocs/specification.md のサンプルを考えてみたい。これは仕様書なので、具体的な実装は行わない事に注意し、AIが解析可能なMarkdownフォーマットで記述してください。以下は仕様書です。
+`最終的にはAIに実装を依頼することを想定したdocs/specification.md のサンプルを考えてみたい。これは仕様書なので、具体的な実装は行わないがこの仕様書を読んで実装が可能であるレベルの具体的な仕様書を作る事がっ目的である。AIが解析可能なMarkdownフォーマットで記述をお願いしいます。以下は仕様書です。
 言語使用はSystem Verilgとし、階層のTopはtop_tb()と命名。top_tb()内には下記のModuleが存在する。 reset_gen(), clk_gen(), dut_top(), memory_target_if(), dut_initiator_if0(),dut_initiator_if1()。
 - reset_gen()とclk_gen()はリセット、クロックを与えるだけのModuleであり、出力のみを持っている。
 - memory_target_if()はAMBA inferfaceを持つが、そのプロトコルは｛default:AXI4-128bit(address=48bit), AHB-32bit(address=32bit), CHI-256bit(address=48bit)}から選択可能で、かつ、System Verilogのinferface,package構文により抽象化されてdut_top()とバス接続されているとする。
 - dut_initiator_ifx()はAMBA inferfaceを持つが、そのプロトコルは｛default:AXI4-128bit(address=48bit), AXI4-64bit(address=48bit), APB-64bit(address=32bit), NotPresent}から選択可能で、かつ、System Verilogのinferface,package構文により抽象化されてdut_top()とバス接続されているとする。
 - どのinterfaceがどのプロトコルを利用しているかは、top_tb()上位でグローバルに明記されるとする。明記されない場合はdefaultが適応される。Not-Presentが設定された場合は、インスタンスとして存在しても害を及ぼさないようにする。
+- top_tb()と、含まれるModuleは＜Module名＞.svとして実装されることを明記。
+- すべての.svファイルをVerilator.5.xを使ってBuildするためのCMakefileも同時に生成することを明記。
 
-注意点としては
+下記の点をコーディングの注意点として、仕様書の中で明確にしておいてほしい。
 １．すべてのモジュールはベンダー固有のPrimitiveを利用しない、SystemVerilogの仕様のみに準拠する。
 ２．インターフェースで"NotPresent"が選択された場合は、そのモジュールは害を及ぼさないように隔離される。
 ３．SystemVerilogの(interface, package, modport)はAMBAバスインターフェース部分の抽象化のみに利用する。
 
-ここから仕様書docs/specification.mdのサンプルを1枚のMarkdownで書いてダウンロードできるようにして。`
+ここから仕様書docs/specification.mdを作ってみてください。`
 
 ### tuning by hands, with github copilot
 
