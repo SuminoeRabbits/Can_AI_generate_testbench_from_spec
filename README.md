@@ -11,6 +11,12 @@ AI will implement codes for these key spec by GitHub Actions.
 
 ## TOC
 
+## Learning with CoPilot
+面倒なので全部AIにやらせてみよう。まずやり方がよくわからなかったので聞いてみた。
+
+`GitHub ActionsやAPI連携で自動化 の部分を詳しく教えて。今、GithubでRepositoryを作りました。そして docs/specification.md が存在するとします。このファイルをCheckInするたびにGithub　ActionでAIに対して実装を行うように指示したい。どうやって？`
+
+
 ## GitHub Actions for generation
 
 ### Setting AI backend
@@ -20,7 +26,7 @@ APIキーを取得して、GitHubのSecretsに保存 → Settings > Secrets and 
 
 ### Github Actions flow for generation
 
-Adding in 
+Adding in `.github/workflows/generate_code.yml`.
 
 ```
 name: Generate Code from Spec
