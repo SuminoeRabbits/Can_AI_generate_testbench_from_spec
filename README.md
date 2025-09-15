@@ -70,8 +70,20 @@ jobs:
 ### Github Actions flow for auto check-in(optional)
 
 ## docs/specification.md
+
+### initinal geneneration
 これも面倒なのでAIに書かせる。
-`ではdocs/specification.md のサンプルを考えてみたい。これは最終的にはAIに実装を依頼する仕様書なので、ここでは実装は行わない事に注意。言語使用はVerilg HDLとし、階層のTopはtop_tb()と命名。top_tb()内には下記のModuleが存在する。 reset_gen(), clk_gen(), dut_top(), memory_target_if(), dut_initiator_if() ここから仕様書のサンプルを書いてみて。`
+
+`ではdocs/specification.md のサンプルを考えてみたい。これは最終的にはAIに実装を依頼する仕様書なので、ここでは実装は行わない事に注意し、AIが解析可能なフォーマットを選択してください。言語使用はSystem Verilgとし、階層のTopはtop_tb()と命名。top_tb()内には下記のModuleが存在する。 reset_gen(), clk_gen(), dut_top(), memory_target_if(), dut_initiator_if0(),dut_initiator_if1()。
+
+reset_gen()とclk_gen()はリセット、クロックを与えるだけのModuleであり、出力のみを持っている。
+memory_target_if()はAMBA inferfaceを持つが、そのプロトコルは｛default:AXI4-128bit(address=48bit), AHB-32bit(address=32bit), CHI-256bit(address=48bit)}から選択可能で、かつ、System Verilogのinferface,package構文により抽象化されてdut_top()とバス接続されているとする。
+dut_initiator_ifx()はAMBA inferfaceを持つが、そのプロトコルは｛default:AXI4-128bit(address=48bit), AXI4-64bit(address=48bit), APB-64bit(address=32bit), Not-Present}から選択可能で、かつ、System Verilogのinferface,package構文により抽象化されてdut_top()とバス接続されているとする。
+どのinterfaceがどのプロトコルを利用しているかは、top_tb()上位でグローバルに明記されるとする。明記されない場合はdefaultが適応される。Not-Presentが設定された場合は、インスタンスとして存在しても害を及ぼさないようにする。
+
+ここから仕様書のサンプルを書いてみて。`
+
+### tuning by hands, with github copilot
 
 
 
